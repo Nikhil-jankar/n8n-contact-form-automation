@@ -27,30 +27,6 @@ No manual follow-up needed. Zero code required to run.
 
 ---
 
-## 📸 Workflow Preview
-
-> *(Add a screenshot of your n8n workflow canvas here)*
-
-```
-[Form Popup] → [Save to Google Sheet] → [Send Email]
-```
-
----
-
-## 📁 Project Structure
-
-```
-n8n-contact-form-automation/
-├── workflow.json       # Import this into n8n to run the project
-├── README.md           # Project documentation
-└── screenshots/        # Demo screenshots (optional)
-    ├── workflow.png
-    ├── spreadsheet.png
-    └── email-preview.png
-```
-
----
-
 ## ⚙️ How to Import & Run
 
 ### Prerequisites
@@ -106,11 +82,10 @@ After a form submission:
 
 ## 👤 Author
 
-**Your Name**  
-[LinkedIn](https://linkedin.com/in/YOUR_PROFILE) • [GitHub](https://github.com/YOUR_USERNAME)
+**Nikhil Jankar**  
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source 

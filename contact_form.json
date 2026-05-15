@@ -1,0 +1,194 @@
+{
+  "name": "contact_form",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Contact Us-GTH",
+        "formDescription": "give your details to us and we are reach to you as soon as",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Phone Number",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email"
+            },
+            {
+              "fieldLabel": "Occupation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "713dcf1b-d20f-46bd-bbb9-3906612ea3d8",
+      "name": "On form submission",
+      "webhookId": "7f89045d-74d9-4626-be7f-53aebb1a2e70"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1JdiBMGCy2CJMigaf2rSbgrCzcBH6sj2K8f4dh3NsmLY/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JdiBMGCy2CJMigaf2rSbgrCzcBH6sj2K8f4dh3NsmLY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Full Name": "={{ $json['Full Name'] }}",
+            "Phone Number": "={{ $json['Phone Number'] }}",
+            "Email": "={{ $json.Email }}",
+            "Occupation": "={{ $json.Occupation }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Occupation",
+              "displayName": "Occupation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        0
+      ],
+      "id": "7c617de8-46a0-4be4-8b77-8ca55c8edb91",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "TizSH5arZyA2LxuJ",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=Got new query",
+        "emailType": "text",
+        "message": "=Thank you!! {{ $json['Full Name'] }} for contacting us. Our team will conect you soon. if you have any doubts call on 996002154 this number.  Regards, GTH pvt ltd.",
+        "options": {
+          "appendAttribution": false,
+          "ccList": "nikhiljankar888@gmail.com"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "b89ddcdf-bef3-41e8-82f5-de5451b74eec",
+      "name": "Send a message",
+      "webhookId": "9438161e-58c5-4837-8c9a-dceef496a1d6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4M4z5I98bIfjrsQ4",
+          "name": "Gmail OAuth2 API-"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "142d5756-dab1-4819-bac2-1ffb280bda7b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49258d8e28267b510d412a920adaa39b06da6a0e622b069068d995e380831db2"
+  },
+  "id": "ZibG7FKuKHhheJC8",
+  "tags": []
+}
